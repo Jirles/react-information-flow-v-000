@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+ import React, { Component } from 'react'
 import { getRandomColor, getReducedColor } from './randomColorGenerator.js'
 import Tier2 from './Tier2'
 
