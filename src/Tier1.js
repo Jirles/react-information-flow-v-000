@@ -19,21 +19,16 @@ export default class Tier1 extends Component {
     this.setState({color: newColor, childColor: getReducedColor(newColor)});
   }
 
-  handleChildClick = (e, targetComponent) => {
+  handleChildClick(e) {
     e.stopPropagation();
-    // e and targetComponent = where the click originated
-    // binding targetComponent to updateColor doesn't seem to work
-    // changing the state of Tier 2 will automatically change the props of Tier 3
-    // Tier 3 can use the e to update the style cand bg color, i think
+    this.setState({childColor: getRandomColor()});
   }
 
   render() {
-    // hard coded color values have been added below, though they won't be
-    // present in our solution. What should they be replaced with?
     return (
       <div onClick={this.updateColor} className="tier1" style={{backgroundColor: this.state.color, color: this.state.color}}>
-        <Tier2 color={this.state.childColor} handleChildClick={this.handleChildClick} />
-        <Tier2 color={this.state.childColor} handleChildClick={this.handleChildClick} />
+        <Tier2 color={this.state.childColor} handleChildClick={this.handleChildClick.bind(this)} handleChildClickCopy={this.handleChildClick} />
+        <Tier2 color={this.state.childColor} handleChildClick={this.handleChildClick.bind(this)} handleChildClickCopy={this.handleChildClick} />
       </div>
     )
   }
